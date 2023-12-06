@@ -1,3 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Cześć, Robert!");
+﻿using ChallengeApp.Day_4;
+
+var Check = new Day_4();
+Check.MainFunction();
 
