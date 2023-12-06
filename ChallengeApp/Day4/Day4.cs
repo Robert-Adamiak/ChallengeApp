@@ -4,16 +4,16 @@
     Dla zachowania porządku i katalogowania lekcji wykorzystuję osobne namespace
 
     Program.cs
-    using ChallengeApp.Day_4;
+    using ChallengeApp.Day4;
 
-    var Check = new Day_4();
+    var Check = new Day4();
     Check.MainFunction();
 
 */
 
-namespace ChallengeApp.Day_4;
+namespace ChallengeApp.Day4;
 
-public class Day_4 {
+public class Day4 {
 
 
     public void MainFunction() {

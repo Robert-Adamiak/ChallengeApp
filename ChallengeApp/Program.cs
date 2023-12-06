@@ -1,5 +1,5 @@
-﻿using ChallengeApp.Day_4;
+﻿using ChallengeApp.Day5;
 
-var Check = new Day_4();
+var Check = new Day5();
 Check.MainFunction();
 
