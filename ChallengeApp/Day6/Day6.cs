@@ -16,11 +16,13 @@ namespace ChallengeApp.Day6;
 public class Day6 {
     public static int PersonalScoreDecimalNumbers { get; } = 0;
     public static int AverageScoreDecimalNumbers { get; } = 1;
-    public static int MinRating { get; } = 1;
-    public static int MaxRating { get; } = 10;
+
     public static int scoreCount = 5;
 
     public void MainFunction() {
+        int minRating = 1;
+        int maxRating = 10;
+
         Employee? bestEmployee = null;
 
         var employeeList = new List<Employee>() {
@@ -31,63 +33,29 @@ public class Day6 {
 
         foreach (var employee in employeeList) {
             for (int i = 0; i < scoreCount; i++) {
-                var randToAdd = GetRandomIntegerRating();
+                var randToAdd = Employee.GetRandomIntegerRating(maxRating, minRating,PersonalScoreDecimalNumbers);
                 Console.WriteLine($"Dodano ocenę {randToAdd} dla pracownika {employee.Name} {employee.Surname}");
                 employee.AddScore(randToAdd);
             }
         }
 
-        bestEmployee = CheckBestEmployeeBySumScore(employeeList);
+        bestEmployee = Employee.CheckBestEmployeeBySumScore(employeeList);
         Console.WriteLine($"Najlepszy pracownik wedle sumy ocen to to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.ScoreSum}");
 
 
 
-        bestEmployee = CheckBestEmployeeByAvgScore(employeeList);
+        bestEmployee = Employee.CheckBestEmployeeByAvgScore(employeeList);
         Console.WriteLine($"Najlepszy pracownik wedle średniej ocen to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.ScoreAvg}");
 
 
 
     }
 
-    private int GetRandomIntegerRating() {
-        var random = new Random();
 
-        return (int)Math.Round(random.NextDouble() * (MaxRating - MinRating) + MinRating, PersonalScoreDecimalNumbers);
-    }
 
-    private Employee CheckBestEmployeeBySumScore(List<Employee> employeeList) {
-        Employee? bestEmployee = null;
 
-        foreach (var employee in employeeList) {
-            if (bestEmployee == null) {
-                bestEmployee = employee;
-            }
-            else {
-                if (bestEmployee.ScoreSum < employee.ScoreSum) {
-                    bestEmployee = employee;
-                }
-            }
-        }
 
-        return bestEmployee;
-    }
 
-    private Employee CheckBestEmployeeByAvgScore(List<Employee> employeeList) {
-        Employee? bestEmployee = null;
-
-        foreach (var employee in employeeList) {
-            if (bestEmployee == null) {
-                bestEmployee = employee;
-            }
-            else {
-                if (bestEmployee.ScoreAvg < employee.ScoreAvg) {
-                    bestEmployee = employee;
-                }
-            }
-        }
-
-        return bestEmployee;
-    }
 
 
 }
