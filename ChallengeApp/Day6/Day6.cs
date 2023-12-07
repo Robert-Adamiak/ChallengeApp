@@ -14,13 +14,14 @@
 namespace ChallengeApp.Day6;
 
 public class Day6 {
-    public static int ScoreDecimalNumbers { get; } = 1;
+    public static int PersonalScoreDecimalNumbers { get; } = 0;
+    public static int AverageScoreDecimalNumbers { get; } = 1;
 
     public void MainFunction() {
 
         var random = new Random();
-        var min = 1.0f;
-        var max = 10.0f;
+        var min = 1.0;
+        var max = 10.0;
         var scoreCount = 5;
 
         Employee? bestEmployee = null;
@@ -33,7 +34,7 @@ public class Day6 {
 
         foreach (var employee in employeeList) {
             for (int i = 0; i < scoreCount; i++) {
-                var randToAdd = (float)Math.Round(random.NextDouble() * (max - min) + min, ScoreDecimalNumbers);
+                var randToAdd = (int)Math.Round(random.NextDouble() * (max - min) + min, PersonalScoreDecimalNumbers);
                 Console.WriteLine($"Dodano ocenę {randToAdd} dla pracownika {employee.Name} {employee.Surname}");
                 employee.AddScore(randToAdd);
             }

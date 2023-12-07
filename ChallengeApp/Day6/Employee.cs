@@ -1,6 +1,6 @@
 ﻿namespace ChallengeApp.Day6;
 public class Employee {
-    private List<float> score = new List<float>();
+    private List<int> score = new List<int>();
 
 
     public Employee(string name, string surname, int age) {
@@ -15,11 +15,11 @@ public class Employee {
     public float Score {
         get {
 
-            return (float)Math.Round(score.Average(), Day6.ScoreDecimalNumbers);
+            return (float)Math.Round(score.Average(), Day6.AverageScoreDecimalNumbers);
         }
     }
 
-    public void AddScore(float rating) {
+    public void AddScore(int rating) {
         this.score.Add(rating);
     }
 
