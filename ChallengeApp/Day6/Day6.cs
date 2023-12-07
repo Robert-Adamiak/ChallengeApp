@@ -16,14 +16,11 @@ namespace ChallengeApp.Day6;
 public class Day6 {
     public static int PersonalScoreDecimalNumbers { get; } = 0;
     public static int AverageScoreDecimalNumbers { get; } = 1;
+    public static int MinRating { get; } = 1;
+    public static int MaxRating { get; } = 10;
+    public static int scoreCount = 5;
 
     public void MainFunction() {
-
-        var random = new Random();
-        var min = 1.0;
-        var max = 10.0;
-        var scoreCount = 5;
-
         Employee? bestEmployee = null;
 
         var employeeList = new List<Employee>() {
@@ -34,24 +31,63 @@ public class Day6 {
 
         foreach (var employee in employeeList) {
             for (int i = 0; i < scoreCount; i++) {
-                var randToAdd = (int)Math.Round(random.NextDouble() * (max - min) + min, PersonalScoreDecimalNumbers);
+                var randToAdd = GetRandomIntegerRating();
                 Console.WriteLine($"Dodano ocenę {randToAdd} dla pracownika {employee.Name} {employee.Surname}");
                 employee.AddScore(randToAdd);
             }
         }
 
+        bestEmployee = CheckBestEmployeeBySumScore(employeeList);
+        Console.WriteLine($"Najlepszy pracownik wedle sumy ocen to to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.ScoreSum}");
+
+
+
+        bestEmployee = CheckBestEmployeeByAvgScore(employeeList);
+        Console.WriteLine($"Najlepszy pracownik wedle średniej ocen to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.ScoreAvg}");
+
+
+
+    }
+
+    private int GetRandomIntegerRating() {
+        var random = new Random();
+
+        return (int)Math.Round(random.NextDouble() * (MaxRating - MinRating) + MinRating, PersonalScoreDecimalNumbers);
+    }
+
+    private Employee CheckBestEmployeeBySumScore(List<Employee> employeeList) {
+        Employee? bestEmployee = null;
 
         foreach (var employee in employeeList) {
             if (bestEmployee == null) {
                 bestEmployee = employee;
             }
             else {
-                if (bestEmployee.Score < employee.Score) {
+                if (bestEmployee.ScoreSum < employee.ScoreSum) {
                     bestEmployee = employee;
                 }
             }
         }
 
-        Console.WriteLine($"Najlepszy pracownik to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.Score}");
+        return bestEmployee;
     }
+
+    private Employee CheckBestEmployeeByAvgScore(List<Employee> employeeList) {
+        Employee? bestEmployee = null;
+
+        foreach (var employee in employeeList) {
+            if (bestEmployee == null) {
+                bestEmployee = employee;
+            }
+            else {
+                if (bestEmployee.ScoreAvg < employee.ScoreAvg) {
+                    bestEmployee = employee;
+                }
+            }
+        }
+
+        return bestEmployee;
+    }
+
+
 }

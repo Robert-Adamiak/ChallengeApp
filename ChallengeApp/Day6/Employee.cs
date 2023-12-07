@@ -12,10 +12,16 @@ public class Employee {
     public string Name { get; private set; }
     public string Surname { get; private set; }
     public int Age { get; private set; }
-    public float Score {
+    public float ScoreAvg {
         get {
 
             return (float)Math.Round(score.Average(), Day6.AverageScoreDecimalNumbers);
+        }
+    }
+    public float ScoreSum {
+        get {
+
+            return score.Sum();
         }
     }
 
