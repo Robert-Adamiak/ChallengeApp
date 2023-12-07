@@ -21,7 +21,7 @@ public class Day6 {
         var random = new Random();
         var min = 1.0f;
         var max = 10.0f;
-        var scoreCount = 3;
+        var scoreCount = 5;
 
         Employee? bestEmployee = null;
 
