@@ -42,20 +42,7 @@ public class Day6 {
         bestEmployee = Employee.CheckBestEmployeeBySumScore(employeeList);
         Console.WriteLine($"Najlepszy pracownik wedle sumy ocen to to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.ScoreSum}");
 
-
-
         bestEmployee = Employee.CheckBestEmployeeByAvgScore(employeeList);
         Console.WriteLine($"Najlepszy pracownik wedle średniej ocen to {bestEmployee.Name} {bestEmployee.Surname} w wieku {bestEmployee.Age} lat z wynikiem {bestEmployee.ScoreAvg}");
-
-
-
     }
-
-
-
-
-
-
-
-
 }
